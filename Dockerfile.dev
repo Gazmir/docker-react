@@ -1,0 +1,20 @@
+# Use a lightweight Node.js image
+FROM node:alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json first (for better caching)
+COPY package*.json .
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of your app
+COPY . .
+
+# Expose the application port
+# EXPOSE 3000
+
+# Command to run your app in Development
+CMD ["npm", "run", "start"]
